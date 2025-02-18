@@ -1,0 +1,28 @@
+<% layout("/layout/boilerplate") %>
+<div class="signin-form-main">
+  <div class="signin">
+    <div class="signin-form-main-left">
+      <h2>Welcome Back</h2>
+    </div>
+    <div class="signin-form-main-right">
+      <div class="signin-container">
+        <form action="/signin" method="post">
+          <h2>Login</h2>
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" />
+          </div>
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" />
+          </div>
+          <button type="submit" class="btn">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

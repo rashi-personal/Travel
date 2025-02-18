@@ -1,0 +1,51 @@
+<% layout("/layout/boilerplate") %>
+<div class="main-contact">
+  <div class="contact-left">
+    <div class="contact-left-up">
+      <h2>contact-us</h2>
+    </div>
+    <div class="contact-left-mid">
+      <form action="/contactus" class="frm" method="post">
+        <div class="name">
+          <label for="name">Name </label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" />
+        </div>
+        <div class="email">
+          <label for="email">Email </label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" />
+        </div>
+        <div class="msg">
+          <label for="message">Enter your message</label>
+          <br />
+          <textarea
+            id="message"
+            cols="30"
+            rows="10"
+            name="message"
+            placeholder=" type here"
+          ></textarea>
+        </div>
+        <div class="sbmt-btn">
+          <input type="submit" id="sbmt" value="send message" />
+        </div>
+      </form>
+    </div>
+    <div class="contact-left-down">
+      <div class="icon-p">
+        <i class="fa-solid fa-phone"></i>
+      </div>
+      <div class="icon-info">8109909XXX</div>
+      <div class="icon-m">
+        <i class="fa-solid fa-square-envelope"></i>
+      </div>
+      <div class="icon-info">abc@gmail.com</div>
+      <div class="icon-l">
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+      <div class="icon-info">abc near jungle</div>
+    </div>
+  </div>
+  <div class="contact-right">
+    <img src="images/logo.jpg" alt="" />
+  </div>
+</div>

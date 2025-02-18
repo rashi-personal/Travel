@@ -1,0 +1,123 @@
+<% layout("/layout/boilerplate") %>
+<div class="tourist-main">
+  <div class="tourist-up">
+    <input
+      type="text"
+      id="tourist-searchinput"
+      name="search"
+      placeholder="Enter your city"
+      onkeyup="searchFunc()"
+    />
+    <button type="submit" id="tourist-btn">Search</button>
+  </div>
+  <div class="tourist-mid"></div>
+</div>
+<script>
+  let inpt = document.querySelector("#tourist-searchinput");
+  let touristDiv = document.querySelector(".tourist-mid");
+  let btn = document.querySelector("#tourist-btn");
+  async function getData() {
+    const res = await fetch(`http://localhost:5000/tourist-guidess`);
+    const data = await res.json();
+
+    // console.log(data);
+
+    let htmlContent = "";
+    data.forEach((i) => {
+      htmlContent += `<div class="mainCard">
+        <div class="mainCard-left">
+            <img src=${i.tourist_image_url} alt="">
+        </div>
+        <div class="mainCard-mid">
+            <div class="mainCard-mid-up">
+                <h2>${i.tourist_name}</h2>
+            </div>
+            <div class="mainCard-mid-mid">
+                <h5>${i.tourist_email}</h5>
+            </div>
+            <div class="mainCard-midd-low">
+                <h5>${i.tourist_city}</h5>
+            </div>
+        </div>
+        <div class="mainCard-right">
+            <div class="mainCard-right-up">
+                <h2>About</h2>
+            </div>
+            <div class="mainCard-right-low">
+                <div class="mainCard-right-low-up">
+                    <div class="mainCard-right-low-up-inside">
+                        <p>Language: </p>
+                        <p>${i.tourist_language}</p>
+                    </div>
+                </div>
+                <div class="mainCard-right-low-mid">
+                    <div class="mainCard-right-low-up-inside">
+                        <p>Native Place: </p>
+                        <p>${i.tourist_native_place}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>`;
+    });
+
+    touristDiv.innerHTML = htmlContent;
+  }
+  getData();
+  async function searchFunc() {
+    const res = await fetch(
+      `http://localhost:5000/tourist-guides?input=${inpt.value}`
+    );
+    const data = await res.json();
+
+    // console.log(data);
+
+    let htmlContent = "";
+    data.forEach((i) => {
+      htmlContent += `
+      <div class="mainCard">
+        <div class="mainCard-left">
+            <img src=${i.tourist_image_url} alt="">
+        </div>
+        <div class="mainCard-mid">
+            <div class="mainCard-mid-up">
+                <h2>${i.tourist_name}</h2>
+            </div>
+            <div class="mainCard-mid-mid">
+                <h5>${i.tourist_email}</h5>
+            </div>
+            <div class="mainCard-midd-low">
+                <h5>${i.tourist_city}</h5>
+            </div>
+        </div>
+        <div class="mainCard-right">
+            <div class="mainCard-right-up">
+                <h2>About</h2>
+            </div>
+            <div class="mainCard-right-low">
+                <div class="mainCard-right-low-up">
+                    <div class="mainCard-right-low-up-inside">
+                        <p>Language: </p>
+                        <p>${i.tourist_language}</p>
+                    </div>
+                </div>
+                <div class="mainCard-right-low-mid">
+                    <div class="mainCard-right-low-up-inside">
+                        <p>Native Place: </p>
+                        <p>${i.tourist_native_place}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>`;
+    });
+
+    touristDiv.innerHTML = htmlContent;
+
+    if (inpt.value == "") {
+      getData();
+    }
+  }
+
+  btn.addEventListener("click", searchFunc);
+</script>
